@@ -8,7 +8,7 @@
 #include"PoolHandle.h"
 
 template<typename T>
-class ObjetPool 
+class ObjectPool 
 {
 	friend class PoolHandle<T>;
 public:
@@ -16,7 +16,7 @@ public:
 		objects_.reserve(capacity);
 		for (std::size_t i = 0; i < capacity; ++i) {
 			objects_.emplace_back(std::make_unique<T>());
-			free_.push(objects.back().get())
+			free_.push(objects_.back().get());
 		}
 	}
 
@@ -38,7 +38,7 @@ template<typename T>
 PoolHandle<T>::~PoolHandle()
 {
 	if (obj_ != nullptr && pool_ != nullptr) {
-		pool_ - Release(obj_);
+		pool_ ->Release(obj_);
 	}
 }
 

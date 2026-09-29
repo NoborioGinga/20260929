@@ -1,26 +1,24 @@
-﻿
-#include <iostream>
-
+﻿#include <iostream>
 #include "Objectpool.h"
 #include "PoolHandle.h"
 
-
-class Enemy {
+class Enemy
+{
 public:
 	void Attack() {
 		std::cout << "Enemy attacks!" << std::endl;
 	}
 };
 
-int main() {
+int main()
+{
 	ObjectPool<Enemy>pool(2);
-	auto e1 = pool, Acquire();
+
+	auto e1 = pool.Acquire();
 	e1->Attack();
 
 	auto e2 = pool.Acquire();
 	e2->Attack();
-
-
 };
 
 

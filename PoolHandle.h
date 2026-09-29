@@ -29,7 +29,7 @@ public:
 	//デストラクタで自動返却
 	~PoolHandle();
 	T* operator->() { return obj_; }
-	const T* operator->()const { rerurn obj_; }
+	const T* operator->()const { return obj_; }
 	T& operator*() { return*obj_; }
 	const T& operator*()const { return*obj_; }
 
