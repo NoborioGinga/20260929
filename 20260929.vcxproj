@@ -125,6 +125,10 @@
   <ItemGroup>
     <ClCompile Include="20260929.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Objectpool.h" />
+    <ClInclude Include="PoolHandle.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

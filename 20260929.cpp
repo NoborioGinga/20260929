@@ -1,36 +1,26 @@
-﻿// 20260929.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
-//
-
+﻿
 #include <iostream>
 
-template <typename T>
-class PoolHandle {
-	friend class ObjectPool<T>;
-	explicit PoolHandle(T*obj,ObjectPool<T>*pool)
-		:obj_(obj),pool_(pool){ }
+#include "Objectpool.h"
+#include "PoolHandle.h"
+
+
+class Enemy {
 public:
-	//コピー禁止
-	PoolHandle(const PoolHandle&) = delete;
-	//ムーブ禁止
-	PoolHandle(PoolHandle&& other)noexcept
-		:obj_(other.obj), pool_(other.pool) {
-		other.obj_ = nullptr;
-		other.pool_ = nullptr;
+	void Attack() {
+		std::cout << "Enemy attacks!" << std::endl;
 	}
+};
 
-	//デストラクタで自動返却
-	~PoolHandle()
-	{
-		if (obj_ && pool_) {
-			pool_->Release(obj_);
-		}
-	}
+int main() {
+	ObjectPool<Enemy>pool(2);
+	auto e1 = pool, Acquire();
+	e1->Attack();
 
-	//アクセス演算子
-	T* operator->() { return obj_; }
-	T& operator*() { return*obj_; }
-private:
-	T* obj_;
-	ObjectPool<T>* pool_;
+	auto e2 = pool.Acquire();
+	e2->Attack();
+
 
 };
+
+
